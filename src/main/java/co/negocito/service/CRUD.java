@@ -1,5 +1,6 @@
 package co.negocito.service;
 
+
 import antlr.collections.List;
 
 public interface CRUD<T> {
@@ -9,4 +10,5 @@ public interface CRUD<T> {
 	void deleteById(Long id);
 	T getById(Long id);
 	List getAll();
+	
 }

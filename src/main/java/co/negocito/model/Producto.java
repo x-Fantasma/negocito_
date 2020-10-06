@@ -32,11 +32,11 @@ public class Producto implements Serializable{
 	
 	@Column(name = "descripcion", nullable = false, length = 100)
 	private String descripcion;
-	@Column(name = "url", nullable = false)
-	private String url;
+	@Column(name = "precio", nullable = false)
+	private double precio;
 	
-	@Transient
-	private MultipartFile file;
+//	@Transient
+//	private MultipartFile file;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_imagen")
@@ -47,12 +47,12 @@ public class Producto implements Serializable{
 	}
 
 	@Autowired
-	public Producto(String descripcion, String url, Imagen imagen, MultipartFile file) {
+	public Producto(String descripcion, double precio, Imagen imagen, MultipartFile file) {
 		super();
 		this.descripcion = descripcion;
-		this.url = url;
+		this.precio = precio;
 		this.imagen = imagen;
-		this.file = file;
+//		this.file = file;
 	}
 	
 	public Long getId() {
@@ -67,12 +67,12 @@ public class Producto implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public String getUrl() {
-		return url;
+	public double getPrecio() {
+		return precio;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
 
 	public Imagen getImagen() {
@@ -83,16 +83,19 @@ public class Producto implements Serializable{
 		this.imagen = imagen;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
 
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
+//	public MultipartFile getFile() {
+//		return file;
+//	}
+//
+//	public void setFile(MultipartFile file) {
+//		this.file = file;
+//	}
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", descripcion=" + descripcion + ", url=" + url + ", imagen=" + imagen + "]";
+		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", imagen=" + imagen
+				+ "]";
 	}
+
 }

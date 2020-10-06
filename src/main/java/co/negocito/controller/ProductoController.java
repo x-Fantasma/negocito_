@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import antlr.collections.List;
 import co.negocito.model.Producto;
@@ -33,6 +35,8 @@ public class ProductoController {
 	
 	@PostMapping("/saveproducto")
 	public Producto saveProducto(@RequestBody Producto producto) throws Exception {
+		System.out.println("Holi");
+
 		return productoService.saveProducto(producto);
 	}
 }

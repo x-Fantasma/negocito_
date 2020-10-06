@@ -48,10 +48,14 @@ public class ProductoServiceImpl implements ProductoService{
 	@Override
 	public Producto saveProducto(Producto producto) throws FileAlreadyExistsException {
 				
+		 MultipartFile multipartfile = null;
+		
 		Producto p = null;
 		if(getById(producto.getId()) == null) {
 			try {
-				producto.setImagen(saveImagen(producto.getFile()));
+				System.out.println("Punto1");
+
+				producto.setImagen(saveImagen(multipartfile));
 				p = productoRepository.save(producto);
 			} catch (Exception e) {
 				if(e instanceof IOException) {
@@ -90,6 +94,8 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 	
 	private Imagen saveImagen(MultipartFile multipartfile) throws Exception {
+		System.out.println("Punto2");
+
 		
 		Imagen img = null;
 		BufferedImage bufferedImage = ImageIO.read(multipartfile.getInputStream());
@@ -110,6 +116,8 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 	
 	private File convertMultipartfile(MultipartFile multipartfile) throws IOException {
+		System.out.println("punto3");
+
 		
 		File file = new File(multipartfile.getOriginalFilename());
 		FileOutputStream fo = new FileOutputStream(file);
@@ -119,11 +127,14 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 	
 	private void configCloudinary() {
+		System.out.println("punto4");
+
 		
 		valuesMap.put("cloud_name", "fanti");
 		valuesMap.put("api_key", "652757146893581");
 		valuesMap.put("api_secret", "_geMvcmk-wQP7t5QKFmjoDNCsO4");
 		cloudinary = new Cloudinary(valuesMap);
 	}
+
 		
 }
